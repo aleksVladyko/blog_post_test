@@ -1,16 +1,20 @@
 import { Route, Routes } from "react-router-dom";
+// import { useSelector } from "react-redux";
 import Layout from "./Layout";
 import Posts from "./pages/Posts";
+import Post from "./pages/Post";
 import About from "./pages/About";
-import Comments from "./pages/Comments";
+
 
 function App() {
+    // const store = useSelector((store) => store);
+    // console.log(store);
     return (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Posts />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/comments" element={<Comments />} />
+                <Route path="posts/:id" element={<Post />} />
+                <Route path="about" element={<About />} />
             </Route>
         </Routes>
     );

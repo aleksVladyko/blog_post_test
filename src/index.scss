@@ -1,7 +1,7 @@
 #root {
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   font-size: 20px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -10,7 +10,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background: linear-gradient(to top left, #417079, #39AECF, #99d8e8);
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
