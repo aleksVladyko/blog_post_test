@@ -1,24 +1,20 @@
 // import { useSelector, useDispatch } from "react-redux";
-// import { getAllPosts } from "../redux/actions/actionsCreator";
-
 import CardPosts from "../components/CardPosts";
-
+// import { getUsers } from "../redux/actions/actionsCreator";
 
 const Post = () => {
-// const allPosts = useSelector(store => store?.posts?.allPosts || []);
-// const userPost = useSelector(store => store?.posts?.userPost || []);
-// const dispatch = useDispatch();
-  
-//   const handlePosts = () => {
-//    dispatch(getAllPosts());
-//   };
+    // const dispatch = useDispatch();
+    // const users = useSelector((store) => store?.posts?.users || []);
+    // console.log(users);
+    // const handleUsers = () => {
+    //     dispatch(getUsers());
+    // };
 
-   return (
-    <div>
-      {/* <button onClick={handlePosts}> getPosts</button>
-      {allPosts} */}
-      <CardPosts />
-    </div>
-  );
+    return (
+        <div>
+            {/* <button onClick={handleUsers}> users</button> */}
+            <CardPosts />
+        </div>
+    );
 };
 export default Post;
