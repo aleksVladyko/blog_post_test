@@ -3,7 +3,7 @@ import axios from "axios";
 export const getPosts = async () => {
     try {
         const request = await axios.get(
-            "https://jsonplaceholder.typicode.com/posts/"
+            "https://jsonplaceholder.typicode.com/posts"
         );
         return request;
     } catch (error) {
@@ -30,23 +30,25 @@ export const getAllUsers = async () => {
         console.error(error);
     }
 };
-export const getUser = async (userId) => {
-    try {
-        const request = await axios.get(
-            `https://jsonplaceholder.typicode.com/users/${userId}`
-        );
-        return request;
-    } catch (error) {
-        console.error(error);
-    }
-};
 export const getUserPosts = async (userId) => {
     try {
         const request = await axios.get(
             `https://jsonplaceholder.typicode.com/users/${userId}/posts`
-        );
-        return request;
-    } catch (error) {
-        console.error(error);
-    }
-};
+            );
+            return request;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+    export const getUser = async (userId) => {
+
+        try {
+            const request = await axios.get(
+                `https://jsonplaceholder.typicode.com/users/${userId}`
+            );
+            return request;
+        } catch (error) {
+            console.error(error);
+        }
+    };

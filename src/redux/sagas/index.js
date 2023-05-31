@@ -6,7 +6,13 @@ import {
     SET_ALL_POSTS,
     SET_ALL_USERS,
 } from "../constant";
-import { getAllUsers, getPosts, getUser, getUserPosts, getCommentsPost} from "../../api/index";
+import {
+    getAllUsers,
+    getPosts,
+    getUser,
+    getUserPosts,
+    getCommentsPost,
+} from "../../api/index";
 import {
     getCommentsPostError,
     getCommentsPostSucces,
@@ -41,7 +47,7 @@ export function* watchAllPosts() {
 export function* handlerAllUsers() {
     try {
         const { data } = yield call(getAllUsers);
-           // console.log(data);
+        // console.log(data);
         yield put(setAllUsersSuccess(data));
     } catch (error) {
         yield put(setAllUsersError(error.message));
@@ -83,7 +89,7 @@ export function* watchAllUserPosts() {
 export function* handlerUser(payload) {
     try {
         const { data } = yield call(getUser, payload.userId);
-        console.log(data);
+        // console.log(data);
         yield put(getUserSucces(data));
     } catch (error) {
         yield put(getUserError(error.message));
