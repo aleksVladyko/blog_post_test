@@ -8,15 +8,20 @@ import CardPosts from "../components/CardPosts";
 
 const Posts = () => {
     const dispatch = useDispatch();
-    const allPosts = useSelector((state) => state?.posts?.allPosts);
+    // const allPosts = useSelector((state) => state?.posts?.allPosts);
+    // const posts = useSelector((state) => state.posts);
+    // const {allPosts, allCommentsPost} = posts;
+    // const postId = allPosts.map(postId => postId.id);
     useEffect(() => {
         dispatch(setAllPosts());
-        dispatch(setAllUsers());
-        dispatch(getCommentsPost());
-        dispatch(getUserPosts());
+        // dispatch(setAllUsers());
+        // dispatch(getCommentsPost({postId}));
+        // dispatch(getUserPosts());
         // dispatch(getUser());
-    }, [dispatch]);
-console.log(allPosts);
+    }, []);
+// console.log(allPosts);
+// console.log(allCommentsPost);
+// console.log(getCommentsPost({postId}));
     return <CardPosts />;
 };
 export default Posts;

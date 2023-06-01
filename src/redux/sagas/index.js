@@ -58,7 +58,7 @@ export function* watchAllUsers() {
 }
 
 // получаю массив всех комментов к указанному посту по id
-export function* handlerCommentsPost(payload) {
+export function* handlerCommentsPost({payload}) {
     try {
         const { data } = yield call(getCommentsPost, payload.postId);
         // console.log(data);
@@ -72,7 +72,7 @@ export function* watchCommentsPost() {
 }
 
 // получаю массив всех постов юзера
-export function* handlerAllUserPosts(payload) {
+export function* handlerAllUserPosts({payload}) {
     try {
         const { data } = yield call(getUserPosts, payload.userId);
         // console.log(data);
@@ -86,10 +86,10 @@ export function* watchAllUserPosts() {
 }
 
 //получаю объект юзера
-export function* handlerUser(payload) {
+export function* handlerUser({payload}) {
+    // console.log(payload);
     try {
         const { data } = yield call(getUser, payload.userId);
-        // console.log(data);
         yield put(getUserSucces(data));
     } catch (error) {
         yield put(getUserError(error.message));

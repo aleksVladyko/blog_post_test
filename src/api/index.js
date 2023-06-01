@@ -42,7 +42,7 @@ export const getUserPosts = async (userId) => {
     };
     
     export const getUser = async (userId) => {
-
+console.log(userId);
         try {
             const request = await axios.get(
                 `https://jsonplaceholder.typicode.com/users/${userId}`
