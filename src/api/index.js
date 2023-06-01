@@ -10,26 +10,27 @@ export const getPosts = async () => {
         console.error(error);
     }
 };
-export const getCommentsPost = async (postId) => {
-    try {
-        const request = await axios.get(
-            `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-        );
-        return request;
-    } catch (error) {
-        console.error(error);
-    }
-};
 export const getAllUsers = async () => {
     try {
         const request = await axios.get(
             "https://jsonplaceholder.typicode.com/users"
-        );
-        return request;
-    } catch (error) {
-        console.error(error);
-    }
-};
+            );
+            return request;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    export const getCommentsPost = async (postId) => {
+        try {
+            const request = await axios.get(
+                `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+            );
+            // console.log(request);
+            return request;
+        } catch (error) {
+            console.error(error);
+        }
+    };
 export const getUserPosts = async (userId) => {
     try {
         const request = await axios.get(
@@ -42,7 +43,7 @@ export const getUserPosts = async (userId) => {
     };
     
     export const getUser = async (userId) => {
-console.log(userId);
+// console.log(userId);
         try {
             const request = await axios.get(
                 `https://jsonplaceholder.typicode.com/users/${userId}`

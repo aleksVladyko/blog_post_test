@@ -1,29 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { Badge, Button, Card, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Stack, Card, Button, Badge } from "react-bootstrap";
 import avatar from "../img/avatar.svg";
 
-const CardPosts = () => {
+const CardPosts = (props) => {
+    const [commentsVisible, setCommentsVisible] = useState(false);
     const navigate = useNavigate();
+    const { allPosts, loading, error } = props;
 
-    const allPosts = useSelector((state) => state?.posts?.allPosts);
-    const allUsers = useSelector((state) => state?.posts?.allUsers);
-    const allCommentsPost = useSelector(
-        (state) => state?.posts?.allCommentsPost
-    );
-    const allUserPosts = useSelector((state) => state?.posts?.allUserPosts);
-    const user = useSelector((state) => state?.posts?.user);
-    const loading = useSelector((state) => state?.posts?.isLoading);
-    const error = useSelector((state) => state?.posts?.error);
-
-    // console.log(allPosts);
-    // console.log(allUsers);
-    // console.log(allPosts);
-    // console.log(allUserPosts);
-    // console.log(user);
-
-    // if (!allPosts || !allUsers) return null;
+    if (!allPosts) return null;
 
     return (
         <Stack gap={2} className="mt- p-5">
@@ -44,7 +30,6 @@ const CardPosts = () => {
                             <Card.Img
                                 key={post.userId}
                                 onClick={() => navigate(`${post.userId}`)}
-                                // onClick={getUserProfile}
                                 src={avatar}
                                 style={{
                                     height: "70px",
@@ -58,9 +43,15 @@ const CardPosts = () => {
                                     {post.title.toUpperCase()}
                                 </Card.Title>
                                 <Card.Text>{post.body}</Card.Text>
-                                <Button variant="info">
+                                <Button
+                                    variant="info"
+                                    onClick={() =>
+                                        setCommentsVisible(!commentsVisible)
+                                    }
+                                >
                                     Comments
                                     <Badge bg="secondary">9</Badge>
+                                    {commentsVisible && <div>ddddddd</div>}
                                 </Button>
                             </Card.Body>
                         </Card>
@@ -69,4 +60,11 @@ const CardPosts = () => {
         </Stack>
     );
 };
+CardPosts.propTypes = {
+    allPosts: PropTypes.array,
+    allComments: PropTypes.array,
+    loading: PropTypes.bool,
+    error: PropTypes.string,
+};
+
 export default CardPosts;
