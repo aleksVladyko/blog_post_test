@@ -1,70 +1,86 @@
-import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Badge, Button, Card, Stack } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import avatar from "../img/avatar.svg";
+import Comments from "./Comments";
+import { getCommentsPost } from "../redux/actions/actionsCreator";
 
-const CardPosts = (props) => {
-    const [commentsVisible, setCommentsVisible] = useState(false);
+const CardPosts = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { allPosts, loading, error } = props;
+    const [commentsVisible, setCommentsVisible] = useState(false);
+    const [comments, setComments] = useState([]);
+    const allPosts = useSelector((state) => state?.posts?.allPosts);
+    const allComments = useSelector((state) => state?.posts?.allCommentsPost);
+    const loading = useSelector((state) => state?.posts?.isLoading);
+    const error = useSelector((state) => state?.posts?.error);
 
     if (!allPosts) return null;
 
+    const handleGetComments = (postId) => {
+        dispatch(getCommentsPost({ postId }));
+        setComments((prevComments) => ({
+            ...prevComments,
+            [postId]: allComments,
+        }));
+        // убрать повторную отправку запроса на сервер при закрытии комментариев
+        // или изменить логику запроса на получение всех комментов и фильтрацию по id
+        setCommentsVisible((prevCommentsVisible) => ({
+            ...prevCommentsVisible,
+            [postId]: !prevCommentsVisible[postId],
+        }));
+    };
+
     return (
-        <Stack gap={2} className="mt- p-5">
+        <Stack gap={2} className=" p-5">
             <div className="d-flex flex-column align-self-center p-2 text-dark">
                 <h3>Список постов</h3>
             </div>
-            {allPosts.loading && <p>Loading...</p>}
+            {loading && <p>Loading...</p>}
             {error && !loading && <p>{error}</p>}
-            {allPosts.length > 0 &&
-                allPosts.map((post, index) => {
-                    const colorClass = index % 2 === 0 ? "even" : "odd";
-                    return (
-                        <Card
-                            key={post.id}
-                            className={`p-2 text-white d-flex flex-row align-items-center ${colorClass}`}
-                            border="dark"
-                        >
-                            <Card.Img
-                                key={post.userId}
-                                onClick={() => navigate(`${post.userId}`)}
-                                src={avatar}
-                                style={{
-                                    height: "70px",
-                                    width: "70px",
-                                    cursor: "pointer",
-                                }}
+            {allPosts.map((post, index) => {
+                const colorClass = index % 2 === 0 ? "even" : "odd";
+                return (
+                    <Card
+                        key={post.id}
+                        className={`p-2 text-white d-flex flex-row align-items-center ${colorClass}`}
+                        border="dark"
+                    >
+                        <Card.Img
+                            key={post.userId}
+                            onClick={() => navigate(`${post.userId}`)}
+                            src={avatar}
+                            style={{
+                                height: "70px",
+                                width: "70px",
+                                cursor: "pointer",
+                            }}
+                        />
+                        <Card.Body>
+                            <Card.Title className="text-center">
+                                {post.title.toUpperCase()}
+                            </Card.Title>
+                            <Card.Text>{post.body}</Card.Text>
+                            <Button
+                                variant="info"
+                                onClick={() => handleGetComments(post.id)}
+                            >
+                                Comments
+                                <Badge bg="secondary">
+                                    {(comments[post.id] || []).length}
+                                </Badge>
+                            </Button>
+                            <Comments
+                                postId={post.id}
+                                commentsVisible={commentsVisible}
                             />
-
-                            <Card.Body>
-                                <Card.Title className="text-center">
-                                    {post.title.toUpperCase()}
-                                </Card.Title>
-                                <Card.Text>{post.body}</Card.Text>
-                                <Button
-                                    variant="info"
-                                    onClick={() =>
-                                        setCommentsVisible(!commentsVisible)
-                                    }
-                                >
-                                    Comments
-                                    <Badge bg="secondary">9</Badge>
-                                    {commentsVisible && <div>ddddddd</div>}
-                                </Button>
-                            </Card.Body>
-                        </Card>
-                    );
-                })}
+                        </Card.Body>
+                    </Card>
+                );
+            })}
         </Stack>
     );
-};
-CardPosts.propTypes = {
-    allPosts: PropTypes.array,
-    allComments: PropTypes.array,
-    loading: PropTypes.bool,
-    error: PropTypes.string,
 };
 
 export default CardPosts;

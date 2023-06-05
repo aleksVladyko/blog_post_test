@@ -76,3 +76,4 @@ export const getUserPostsError = (payload) => ({
     type: GET_USER_POSTS_ERROR,
     payload,
 });
+
