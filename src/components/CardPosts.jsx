@@ -36,9 +36,9 @@ const CardPosts = () => {
     // реализую сортировку по возрастанию и убыванию
     // сделать изменение массива постов через стэйт
     const sortPosts = (type) => {
-        if (type === "asc") {
+        if (type === "up") {
             allPosts.sort((a, b) => a.title.localeCompare(b.title));
-        } else if (type === "desc") {
+        } else if (type === "down") {
             allPosts.sort((a, b) => b.title.localeCompare(a.title));
         }
     };

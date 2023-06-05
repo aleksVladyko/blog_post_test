@@ -7,8 +7,8 @@ const Sorted = ({handleChansge}) => {
     <Form.Select onChange={handleChansge} size="sm" aria-label="Default select example"
     className="bg-info">
       <option>Сортировка</option>
-      <option value="asc" >По возрастанию</option>
-      <option value="desc" >По убыванию</option>
+      <option value="up" >По возрастанию</option>
+      <option value="down" >По убыванию</option>
     </Form.Select>
   );
 };
