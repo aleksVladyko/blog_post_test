@@ -10,10 +10,6 @@ const Posts = () => {
         dispatch(setAllPosts());
         dispatch(setAllUsers());
     }, [dispatch]);
-    return (
-        <>
-            <CardPosts />;
-        </>
-    );
+    return <CardPosts />;
 };
 export default Posts;

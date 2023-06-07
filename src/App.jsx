@@ -7,8 +7,7 @@ import About from "./pages/About";
 
 
 function App() {
-    // const store = useSelector((store) => store);
-    // console.log(store);
+    
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

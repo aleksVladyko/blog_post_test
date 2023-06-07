@@ -77,3 +77,7 @@ export const getUserPostsError = (payload) => ({
     payload,
 });
 
+export const setLoadingPosts = (loading) => ({
+    type: "SET_LOADING_POSTS",
+    payload: loading,
+  });

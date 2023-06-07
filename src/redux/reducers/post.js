@@ -23,6 +23,7 @@ const initialState = {
     allCommentsPost: [],
     allUserPosts: [],
     user: {},
+    loadingPosts: false,
     error: null,
     isLoading: false,
 };

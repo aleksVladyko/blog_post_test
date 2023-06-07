@@ -1,4 +1,4 @@
-import { takeEvery, put, call, all } from "redux-saga/effects";
+import { takeEvery, put, call, all, delay } from "redux-saga/effects";
 import {
     GET_COMMENTS_POST,
     GET_USER,
@@ -32,8 +32,8 @@ import {
 //получаю массив всех постов
 export function* handlerAllPosts() {
     try {
+        yield delay(500);
         const { data } = yield call(getPosts);
-        // console.log(data);
         yield put(setAllPostsSuccess(data));
     } catch (error) {
         yield put(setAllPostsError(error.message));
