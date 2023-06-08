@@ -5,7 +5,7 @@ import { getUser, getUserPosts } from "../redux/actions/actionsCreator";
 import { useParams } from "react-router-dom";
 import { Button, Card, Stack } from "react-bootstrap";
 import avatar from "../img/avatar.svg";
-import Posts from "./Posts";
+
 
 const Post = () => {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Post = () => {
         <Stack gap={2} className="mt- p-5">
             <div className="d-flex flex-column align-self-center p-2 text-dark">
                 <h3>Автор: {user.name}</h3>
-                <Button variant="info" href={<Posts/>}>
+                <Button variant="info" href="https://aleksVladyko.github.io/blog_post_test">
                     GO BACK
                 </Button>
             </div>
