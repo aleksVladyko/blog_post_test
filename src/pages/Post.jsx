@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { Button, Card, Stack } from "react-bootstrap";
 import avatar from "../img/avatar.svg";
 
-
 const Post = () => {
     const dispatch = useDispatch();
     const { userId } = useParams();
@@ -22,10 +21,10 @@ const Post = () => {
     console.log(userPosts);
 
     return (
-        <Stack gap={2} className="mt- p-5">
+        <Stack gap={2} className="p-2">
             <div className="d-flex flex-column align-self-center p-2 text-dark">
                 <h3>Автор: {user.name}</h3>
-                <Button variant="info" href="https://aleksVladyko.github.io/blog_post_test">
+                <Button variant="info" href="/">
                     GO BACK
                 </Button>
             </div>
@@ -40,11 +39,7 @@ const Post = () => {
                         <Card.Img
                             key={post.userId}
                             src={avatar}
-                            style={{
-                                height: "70px",
-                                width: "70px",
-                                cursor: "pointer",
-                            }}
+                            className="post-image"
                         />
                         <Card.Body>
                             <Card.Title className="text-center">

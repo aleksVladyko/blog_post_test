@@ -90,7 +90,7 @@ const CardPosts = () => {
     }
 
     return (
-        <Stack gap={2} className=" p-5">
+        <Stack gap={2} className=" p-1">
             <PostsPagination
                 handlePageChange={handlePageChange}
                 currentPage={currentPage}
@@ -99,14 +99,14 @@ const CardPosts = () => {
                 sortedPosts={currentPosts}
             />
 
-            <div className="d-flex flex-column align-self-center p-2 text-dark">
+            <div className="d-flex flex-column align-self-center p-1 text-dark">
                 <h3>Список постов</h3>
                 {/* Добавил сортировку */}
                 <Sorted sortedPosts={currentPosts} setSortType={setSortType} />
                 {/* Добавил строку поиска */}
                 <Search setSearchTitle={setSearchTitle} />
             </div>
-            {loading ? <Spiner/> : null}
+            {loading ? <Spiner /> : null}
             {error && !loading && <p>{error}</p>}
             {!loading &&
                 currentPosts.map((post, index) => {
@@ -121,11 +121,7 @@ const CardPosts = () => {
                                 key={post.userId}
                                 onClick={() => navigate(`${post.userId}`)}
                                 src={avatar}
-                                style={{
-                                    height: "70px",
-                                    width: "70px",
-                                    cursor: "pointer",
-                                }}
+                                className="post-image"
                             />
                             <Card.Body>
                                 <Card.Title className="text-center">
