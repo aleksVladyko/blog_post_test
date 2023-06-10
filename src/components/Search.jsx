@@ -2,10 +2,11 @@
 import PropTypes from "prop-types";
 import { useRef } from "react";
 import { InputGroup, Form, CloseButton } from "react-bootstrap";
-const Search = ({ setSearchTitle }) => {
+const Search = ({ setSearchTitle, setCurrentPage }) => {
     const refInput = useRef(null);
     const handleSearchInputChange = () => {
         setSearchTitle(refInput.current.value);
+        setCurrentPage(1);
     };
     const clearSearchInput = () => {
         setSearchTitle("");
@@ -27,5 +28,6 @@ const Search = ({ setSearchTitle }) => {
 };
 Search.propTypes = {
     setSearchTitle: PropTypes.func,
+    setCurrentPage: PropTypes.func,
 };
 export default Search;

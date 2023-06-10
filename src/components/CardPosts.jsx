@@ -29,17 +29,8 @@ const CardPosts = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     // Добавляю состояние для строки поиска
     const [searchTitle, setSearchTitle] = useState("");
-    // const sortedPosts = useMemo(() => {
-    //     return [...allPosts].sort(
-    //         (a, b) =>
-    //              // a.createdAt < b.createdAt ? 1 : -1
-    //
-    //              a.createdAt < b.createdAt
-    //     );
-    // }, [allPosts]);
+
     const currentPosts = useMemo(() => {
-        // Фильтруем посты по заданному поисковому термину
-        // сортировка сохраняется при переходе на другую страницу
         if (searchTitle) {
             return [...allPosts]
                 .filter((post) =>
@@ -47,7 +38,6 @@ const CardPosts = () => {
                 )
                 .slice(indexOfFirstPost, indexOfLastPost);
         }
-        // Иначе выводим все посты
         return [...allPosts].slice(indexOfFirstPost, indexOfLastPost);
     }, [allPosts, searchTitle, indexOfFirstPost, indexOfLastPost]);
 
@@ -104,7 +94,10 @@ const CardPosts = () => {
                 {/* Добавил сортировку */}
                 <Sorted sortedPosts={currentPosts} setSortType={setSortType} />
                 {/* Добавил строку поиска */}
-                <Search setSearchTitle={setSearchTitle} />
+                <Search
+                    setSearchTitle={setSearchTitle}
+                    setCurrentPage={setCurrentPage}
+                />
             </div>
             {loading ? <Spiner /> : null}
             {error && !loading && <p>{error}</p>}

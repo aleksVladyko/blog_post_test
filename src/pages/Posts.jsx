@@ -9,7 +9,7 @@ const Posts = () => {
     useEffect(() => {
         dispatch(setAllPosts());
         dispatch(setAllUsers());
-    }, [dispatch]);
+    }, []);
     return <CardPosts />;
 };
 export default Posts;
