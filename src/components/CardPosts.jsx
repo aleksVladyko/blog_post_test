@@ -31,12 +31,11 @@ const CardPosts = () => {
     const [searchTitle, setSearchTitle] = useState("");
 
     const currentPosts = useMemo(() => {
+        const filterPosts = [...allPosts].filter((post) =>
+            post.title.toLowerCase().includes(searchTitle.toLowerCase())
+        );
         if (searchTitle) {
-            return [...allPosts]
-                .filter((post) =>
-                    post.title.toLowerCase().includes(searchTitle.toLowerCase())
-                )
-                .slice(indexOfFirstPost, indexOfLastPost);
+            return filterPosts.slice(indexOfFirstPost, indexOfLastPost);
         }
         return [...allPosts].slice(indexOfFirstPost, indexOfLastPost);
     }, [allPosts, searchTitle, indexOfFirstPost, indexOfLastPost]);
