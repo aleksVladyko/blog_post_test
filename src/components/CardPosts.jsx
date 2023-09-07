@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Badge, Button, Card, Stack } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -49,8 +49,7 @@ const CardPosts = () => {
         setCurrentPage(pageNumber);
     };
 
-    if (!allPosts) return null;
-
+    
     const handleGetComments = (postId) => {
         dispatch(getCommentsPost({ postId }));
         setComments((prevComments) => ({
@@ -77,7 +76,8 @@ const CardPosts = () => {
     if (sortType) {
         sortPosts(sortType);
     }
-
+    
+    if (!allPosts) return null;
     return (
         <Stack gap={2} className=" p-1">
             <PostsPagination
@@ -91,7 +91,7 @@ const CardPosts = () => {
             <div className="d-flex flex-column align-self-center p-1 text-dark">
                 <h3>Список постов</h3>
                 {/* Добавил сортировку */}
-                <Sorted sortedPosts={currentPosts} setSortType={setSortType} />
+                <Sorted currentPosts={currentPosts} setSortType={setSortType} sortType={sortType} />
                 {/* Добавил строку поиска */}
                 <Search
                     setSearchTitle={setSearchTitle}
