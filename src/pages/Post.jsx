@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getUserPosts } from "../redux/actions/actionsCreator";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button, Card, Stack } from "react-bootstrap";
 import avatar from "../img/avatar.svg";
 
 const Post = () => {
     const dispatch = useDispatch();
     const { userId } = useParams();
-
+    const navigate = useNavigate()
     // console.log(userId);
     useEffect(() => {
         dispatch(getUser({ userId }));
@@ -23,7 +23,10 @@ const Post = () => {
         <Stack gap={2} className="p-2">
             <div className="d-flex flex-column align-self-center p-2 text-dark">
                 <h3>Автор: {user.name}</h3>
-                <Button variant="info" href="https://aleksVladyko.github.io/blog_post_test">
+                {/* <Button variant="info" href="https://aleksVladyko.github.io/blog_post_test">
+                    GO BACK
+                </Button> */}
+                <Button variant="info" onClick={() => navigate(-1)} >
                     GO BACK
                 </Button>
             </div>

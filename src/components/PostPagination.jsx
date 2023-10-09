@@ -1,5 +1,4 @@
 // реализовать пагинацию на бэке
-import React from "react";
 import PropTypes from "prop-types";
 import { Pagination } from "react-bootstrap";
 
@@ -35,20 +34,20 @@ const PostsPagination = ({
                 <Pagination.Next
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={
-                        currentPage ===
-                        Math.ceil(sortedPosts.length / postsPerPage)
+                        currentPage === 
+                        Math.ceil(sortedPosts.length-1 / postsPerPage)
                     }
                 />
 
                 <Pagination.Last
                     onClick={() =>
                         handlePageChange(
-                            Math.ceil(sortedPosts.length / postsPerPage)
+                            Math.ceil(sortedPosts.length-1 / postsPerPage)
                         )
                     }
                     disabled={
                         currentPage ===
-                        Math.ceil(sortedPosts.length / postsPerPage)
+                        Math.ceil(sortedPosts.length-1 / postsPerPage)
                     }
                 />
             </Pagination>
